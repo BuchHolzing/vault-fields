@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Documentation, privacy policy and support for Vault Fields, an app for Jira Cloud.">
+<link rel="icon" type="image/png" href="icon-64.png">
+<title>Vault Fields Help</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: one reading column with a sticky section index; docs first, then privacy, then support. */
+:root {
+  --bg: #F5F7FA;
+  --surface: #FFFFFF;
+  --fg: #142235;
+  --muted: #536276;
+  --line: #DCE3EC;
+  --navy: #17406E;
+  --teal: #12866E;
+  --code-bg: #EAF0F6;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1726; --surface: #12213A; --fg: #E4EAF2; --muted: #9AA9BC; --line: #233654;
+    --navy: #8DB6E8; --teal: #4FD1B2; --code-bg: #1A2C48; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1726; --surface: #12213A; --fg: #E4EAF2; --muted: #9AA9BC; --line: #233654;
+  --navy: #8DB6E8; --teal: #4FD1B2; --code-bg: #1A2C48; color-scheme: dark;
+}
+
+body {
+  background: var(--bg); color: var(--fg);
+  font: 400 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 64px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 760px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 24px 48px; } }
+
+header.brand { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+header.brand svg { width: 52px; height: 52px; flex: none; }
+header.brand h1 { font: 600 2rem/1.1 var(--display); margin: 0; letter-spacing: 0.01em; }
+header.brand p { margin: 2px 0 0; color: var(--muted); }
+
+nav.index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; display: flex; flex-direction: column; gap: 4px; }
+nav.index a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 6px; font-weight: 500; }
+nav.index a:hover, nav.index a:focus-visible { color: var(--fg); background: var(--code-bg); outline: none; }
+.label { font: 500 0.72rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 0 10px 8px; }
+@media (max-width: 760px) {
+  nav.index { position: static; flex-direction: row; flex-wrap: wrap; }
+  nav.index .label { width: 100%; padding-left: 0; }
+}
+
+main { min-width: 0; display: flex; flex-direction: column; gap: 56px; }
+section { display: flex; flex-direction: column; gap: 14px; max-width: 68ch; scroll-margin-top: 24px; }
+h2 { font: 600 1.7rem/1.2 var(--display); margin: 0; text-wrap: balance; }
+h3 { font: 600 1.1rem/1.3 var(--body); margin: 12px 0 0; }
+p, ol, ul { margin: 0; }
+ol, ul { padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
+a { color: var(--navy); }
+strong { font-weight: 600; }
+code { font: 500 0.88em var(--mono); background: var(--code-bg); padding: 1px 6px; border-radius: 4px; }
+.updated { font: 500 0.8rem var(--mono); color: var(--muted); }
+
+.callout { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+.callout strong { color: var(--teal); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.95rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 0.72rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+td:first-child { font-weight: 600; white-space: nowrap; }
+
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.contact code { font-size: 1rem; padding: 6px 10px; user-select: all; }
+button { font: 600 0.9rem var(--body); color: var(--surface); background: var(--navy); border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.copied { color: var(--teal); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="brand">
+    <svg viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" rx="112" fill="#17406E"/>
+      <rect x="88" y="104" width="336" height="56" rx="16" fill="#FFFFFF" opacity="0.16"/>
+      <rect x="88" y="352" width="336" height="56" rx="16" fill="#FFFFFF" opacity="0.16"/>
+      <rect x="88" y="192" width="336" height="128" rx="28" fill="#FFFFFF"/>
+      <g fill="#17406E"><circle cx="146" cy="256" r="15"/><circle cx="192" cy="256" r="15"/><circle cx="238" cy="256" r="15"/><circle cx="284" cy="256" r="15"/></g>
+      <path d="M342 246 v-14 a24 24 0 0 1 48 0 v14" fill="none" stroke="#1FB394" stroke-width="12" stroke-linecap="round"/>
+      <rect x="330" y="244" width="72" height="54" rx="12" fill="#1FB394"/>
+      <circle cx="366" cy="268" r="7" fill="#FFFFFF"/><rect x="362" y="270" width="8" height="14" rx="3" fill="#FFFFFF"/>
+    </svg>
+    <div>
+      <h1>Vault Fields for Jira Cloud</h1>
+      <p>Restricted fields that stay out of search, exports and the REST API.</p>
+    </div>
+  </header>
+
+  <nav class="index" aria-label="Sections">
+    <div class="label">On this page</div>
+    <a href="#docs">Getting started</a>
+    <a href="#limits">By design</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#privacy">Privacy policy</a>
+    <a href="#support">Support</a>
+  </nav>
+
+  <main>
+    <section id="docs">
+      <h2>Getting started</h2>
+      <p>Vault Fields adds restricted fields to Jira issues. Values are stored encrypted inside the app on Atlassian's Forge platform and are never written to Jira's issue data, so only the people your rules allow can see them.</p>
+
+      <h3>1. Create a restricted field</h3>
+      <p>Jira administrators open <strong>Jira settings → Apps → Vault Fields</strong> and select <strong>Add field</strong>.</p>
+      <ol>
+        <li>Enter a field name and choose a type: Text, Number, Date or Dropdown.</li>
+        <li>For a Dropdown, list the options separated by commas.</li>
+        <li>Choose projects, or leave the list empty to apply the field to every project.</li>
+        <li>Under <strong>Who can edit</strong>, tick <strong>Project lead</strong> and/or enter groups, project roles or users.</li>
+        <li>Under <strong>Who can view</strong>, add people who should read the value without changing it.</li>
+        <li>Select <strong>Save field</strong>. Group and role names are checked against Jira, so a typo is reported straight away.</li>
+      </ol>
+
+      <h3>2. Use the field on an issue</h3>
+      <p>Open an issue and expand <strong>Restricted fields</strong> in the right-hand panel. Editors select <strong>Edit</strong>, change values and select <strong>Save</strong>. Viewers see values read-only. Everyone else sees nothing, including the field's name.</p>
+
+      <div class="callout">
+        <strong>Who counts as an editor or viewer</strong>
+        <p>Each request is checked on the server: the person must be able to open the issue in Jira, and must match a rule by user, group, project role or project lead. Access follows Jira's own permissions and issue security levels.</p>
+      </div>
+    </section>
+
+    <section id="limits">
+      <h2>What Vault Fields does not do, by design</h2>
+      <ul>
+        <li>Restricted values are not searchable with JQL and do not appear in filters, boards, dashboards, exports, notifications, webhooks or the Jira REST API.</li>
+        <li>Jira administrators configure fields but do not see values unless a field's rules include them.</li>
+        <li>A Jira project lead is not automatically in the project's Administrators role. Use the <strong>Project lead</strong> option to include the lead.</li>
+        <li>If the subscription lapses, values stay readable for allowed people. Editing is paused until it is renewed.</li>
+      </ul>
+    </section>
+
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Message</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td>No restricted fields are available to you on this issue.</td><td>No rule covers you for this project. Ask a Jira administrator to add you, your group or your project role.</td></tr>
+            <tr><td>Not found in Jira: group "…"</td><td>The group or project role name is misspelled or does not exist. Check it in Jira settings and save again.</td></tr>
+            <tr><td>Field is not editable</td><td>You can view this field but are not an editor.</td></tr>
+            <tr><td>Subscription is not active</td><td>Values are read-only until the subscription is renewed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy policy</h2>
+      <p class="updated">Last updated 22 October 2026</p>
+      <p>Vault Fields is developed by an independent developer based in Ukraine. Contact details are under <a href="#support">Support</a>.</p>
+
+      <h3>What the app stores</h3>
+      <ul>
+        <li>Field definitions and access rules created by your Jira administrators.</li>
+        <li>Values entered into restricted fields.</li>
+        <li>A change log of who changed which field and when: Atlassian account ID, field ID and timestamp. The change log never contains values.</li>
+      </ul>
+      <p>The app stores Atlassian account IDs only. It does not store names, email addresses or IP addresses.</p>
+
+      <h3>Where it is stored</h3>
+      <p>All data stays in Atlassian-hosted Forge storage. Field values use Forge's encrypted secret storage. We operate no servers, and the app sends no data outside Atlassian.</p>
+
+      <h3>Who can access it</h3>
+      <p>Values are shown only to users allowed by your administrators' rules, after the app checks their access with Jira. The developer has no access to your data and does not process it for any purpose.</p>
+
+      <h3>Retention and deletion</h3>
+      <p>Values and change-log entries are deleted when their issue is deleted. The change log keeps the latest 200 entries per issue. To have all app data for your site deleted, contact support.</p>
+
+      <h3>Your role under GDPR</h3>
+      <p>You, the customer, are the controller of the data in your Jira site. Where the developer is considered a processor, a Data Processing Addendum is available on request.</p>
+
+      <h3>Changes</h3>
+      <p>Updates are posted on this page and the date above is changed.</p>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>Email support in English. We reply within 2 business days.</p>
+      <div class="contact">
+        <code id="email">thedevpac@gmail.com</code>
+        <button type="button" id="copy">Copy address</button>
+        <span class="copied" id="copied" hidden>Copied</span>
+      </div>
+      <p>For a faster answer, include your Jira site address and a screenshot of any message you see.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+document.getElementById('copy').addEventListener('click', async () => {
+  const text = document.getElementById('email').textContent;
+  const done = document.getElementById('copied');
+  try {
+    await navigator.clipboard.writeText(text);
+    done.hidden = false;
+    setTimeout(() => { done.hidden = true; }, 2000);
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById('email'));
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+});
+</script>
+
+</body>
+</html>
